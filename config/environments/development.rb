@@ -13,14 +13,18 @@ Rails.application.configure do
 
   config.assets.debug = true
 
+  config.assets.check_precompiled_asset = false
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
   # Enable server timing
   config.server_timing = true
 
+  config.hosts << "9ad9-2a02-8070-18c-e080-998f-19e4-53da-b810.ngrok-free.app"
+
   #mailing server
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: '9ad9-2a02-8070-18c-e080-998f-19e4-53da-b810.ngrok-free.app'}
 
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.

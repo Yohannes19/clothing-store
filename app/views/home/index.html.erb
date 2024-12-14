@@ -1,3 +1,171 @@
-<h1>Home</h1>
-<%= icon('fa-brands', 'font-awesome')%>
-<%= icon('fa-solid', 'user-secret')%>
+
+<!-- Hero Section -->
+<section class="bg-rose-50 dark:bg-gray-900">
+  <div class="container mx-auto px-4 py-16 flex flex-col lg:flex-row items-center gap-8">
+    <!-- Hero Text -->
+    <div class="lg:w-7/12 flex flex-col justify-center text-center lg:text-left">
+      <h1 class="text-4xl md:text-5xl xl:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white">
+        Ethiopian Traditional Dress
+      </h1>
+      <p class="mt-4 text-lg md:text-xl text-gray-600 dark:text-gray-300">
+        We sell original Ethiopian Shiffon and Traditional dress, perfect for any occasion.
+      </p>
+      <a href="#"
+         class="mt-6 inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-medium text-lg rounded-md hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 transition">
+        Shop Now →
+      </a>
+    </div>
+    <!-- Hero Image -->
+    <div class="lg:w-5/12 flex justify-center lg:justify-end">
+      <%= image_tag 'lq.jpg', alt: "Traditional Dress Image", class: "rounded-lg shadow-lg" %>
+    </div>
+  </div>
+</section>
+
+<!-- Categories Section -->
+<section class="bg-white dark:bg-gray-800 py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">Shop by Category</h2>
+    <div class="relative flex items-center">
+      <!-- Horizontal scroll container -->
+      <div class="flex overflow-x-auto space-x-8 scrollbar-hide" id="category-scroll" style="width: calc(100% - 3rem);">
+        <% @main_categories.first(4).each do |category| %>
+          <div class="group relative min-w-[250px] bg-white rounded-lg shadow-lg overflow-hidden dark:bg-gray-700 transition hover:scale-105">
+            <%= link_to category_path(category) do %>
+              <div class="relative h-64 w-full">
+                <%= category.image.attached? ? image_tag(category.image, class: "h-full w-full object-cover") : image_tag('http://via.placeholder.com/512', class: "h-full w-full object-cover") %>
+              </div>
+              <div class="p-4">
+                <h3 class="text-sm text-gray-600 dark:text-gray-300 font-medium group-hover:text-gray-900 dark:group-hover:text-white">
+                  <%= category.name %>
+                </h3>
+                <p class="text-lg font-semibold text-gray-900 dark:text-white mt-2">
+                  Explore our collection
+                </p>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      
+      <button class="ml-4 bg-gray-900 text-white p-2 rounded-full"
+              data-controller="scroll"
+              data-action="click->scroll#next"
+              data-target-id="category-scroll">
+        &rarr;
+      </button>
+      
+    </div>
+    <!-- View Collection Button -->
+    <div class="text-center mt-8">
+      <%= link_to 'View Collection', admin_categories_path, class: "px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-700" %>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Products Section -->
+<section class="bg-rose-50 dark:bg-gray-900 py-16">
+  <div class="container mx-auto px-4">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">Featured Products</h2>
+    <div class="relative flex items-center">
+      <!-- Horizontal scroll container -->
+      <div class="flex overflow-x-auto space-x-8 scrollbar-hide" id="product-scroll" style="width: calc(100% - 3rem);">
+        <% @featured_products.each do |product| %>
+          <div class="min-w-[250px] bg-white rounded shadow-lg overflow-hidden dark:bg-gray-800 transition hover:scale-105">
+            <%= link_to product_path(product) do %>
+              <div class="h-56 w-full relative">
+                <%= product.images.attached? ? image_tag(product.images.first, class: "h-full w-full object-cover") : image_tag('http://via.placeholder.com/512', class: "h-full w-full object-cover") %>
+              </div>
+              </div>
+              <div class="p-4">
+                <h3 class="text-sm text-gray-600 dark:text-gray-300 font-medium">
+                  <%= product.name %>
+                </h3>
+                <p class="text-lg font-semibold text-gray-900 dark:text-white mt-2">
+                  $<%= product.price %>
+                </p>
+              </div>
+            <% end %>
+          <% end %>
+      </div>
+      <!-- Next Arrow Button -->
+      <button class="ml-4 bg-gray-900 text-white p-2 rounded-full"
+      data-controller="navbar"
+      data-action="click->navbar#next"
+      data-target="product-scroll">
+&rarr;
+</button>
+    </div>
+    <!-- View Collection Button -->
+    <div class="text-center mt-8">
+      <%= link_to 'View Collection', admin_products_path, class: "px-4 py-2 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-700" %>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Newsletter Signup Section -->
+<section class="bg-white dark:bg-gray-800 py-16">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">Subscribe to Our Newsletter</h2>
+    <p class="text-gray-600 dark:text-gray-300 mb-8">
+      Get the latest updates on new collections and exclusive offers.
+    </p>
+    <form class="max-w-md mx-auto flex items-center">
+      <input type="email" placeholder="Enter your email"
+             class="flex-grow px-4 py-3 rounded-l-md text-gray-700 dark:text-gray-300 dark:bg-gray-900 focus:outline-none"
+             required>
+      <button type="submit"
+              class="bg-gray-900 text-white px-6 py-3 rounded-r-md font-medium hover:bg-gray-700 dark:bg-gray-700 dark:hover:bg-gray-600 transition">
+        Subscribe
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer Section -->
+<footer class="bg-gray-100 dark:bg-gray-900">
+  <div class="container mx-auto px-4 py-12 grid md:grid-cols-4 gap-8">
+    <!-- Company Info -->
+    <div>
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Company</h2>
+      <ul class="text-gray-600 dark:text-gray-400">
+        <li><a href="#" class="hover:underline">Meron Traditional Cloth Trading</a></li>
+        <li>Stuttgart, Germany</li>
+        <li>73760 Ost</li>
+      </ul>
+    </div>
+    <!-- Help Center -->
+    <div>
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Help Center</h2>
+      <ul class="text-gray-600 dark:text-gray-400">
+        <li><a href="#" class="hover:underline">Discord Server</a></li>
+        <li><a href="#" class="hover:underline">Twitter</a></li>
+        <li><a href="#" class="hover:underline">Facebook</a></li>
+        <li><a href="#" class="hover:underline">Contact Us</a></li>
+      </ul>
+    </div>
+    <!-- Legal -->
+    <div>
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Legal</h2>
+      <ul class="text-gray-600 dark:text-gray-400">
+        <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+        <li><a href="#" class="hover:underline">Licensing</a></li>
+        <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
+      </ul>
+    </div>
+    <!-- Social Media Icons -->
+    <div>
+      <h2 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Follow Us</h2>
+      <div class="flex space-x-4">
+        <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white"><i class="fab fa-twitter"></i></a>
+        <a href="#" class="text-gray-400 hover:text-gray-900 dark:hover:text-white"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="bg-gray-200 dark:bg-gray-700 text-center py-4 text-sm text-gray-600 dark:text-gray-300">
+    © <%= Time.zone.now.year %> Meron Shiffon™. All rights reserved.
+  </div>
+</footer>

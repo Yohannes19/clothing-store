@@ -12,7 +12,10 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <% unless controller.controller_name == "sessions" || controller.controller_name == "registrations"%>
+    <%= render "shared/navbar"%>
+  <%end%>
+    <main class="w-full mx-auto">
       <%= yield %>
     </main>
   </body>

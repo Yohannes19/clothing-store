@@ -14,6 +14,47 @@
  *= require_self
  */
 @import "font-awesome";
+/* This should initially keep the sidebar hidden off-screen */
+.transform {
+    transform: translateX(-100%);
+  }
+  /* Adding "open" should make it slide into view */
+  .transform.open {
+    transform: translateX(0);
+  }
+  /* You can add this in your application's CSS file */
+/* Styles for the search overlay */
+ /* Styles for the search overlay */
+/* Styles for the search overlay */
+ [data-navbar-target="searchOverlay"] {
+    transition: transform 0.3s ease-in-out; /* Smooth transition for sliding effect */
+  }
+  
+  /* When hidden, the overlay is positioned off-screen */
+  [data-navbar-target="searchOverlay"].-translate-y-full {
+    transform: translateY(-100%); /* Initially position it off-screen */
+  }
+  
+  /* When shown, the overlay should translate to its original position */
+  [data-navbar-target="searchOverlay"]:not(.-translate-y-full) {
+    transform: translateY(0); /* Slide into view */
+  }
 
-// Your custom styles
+  /* Hide scrollbar for webkit browsers */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+  
+
+  
+  
+  
+  
+  
+  
 
